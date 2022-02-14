@@ -42,14 +42,15 @@ arma::rowvec boot_cor (
     double boot_mean = arma::mean(bootstraps);
 
     // sort the bootstrap values
-    arma::vec boot_sorted = sort(bootstraps);
+    arma::vec boot_sorted = arma::sort(bootstraps);
     
     // get lower confidence interval
-    int id_lwr = n_boot * ( 1 - conf ) / 2;
+    double alpha = (1 - conf) / 2;
+    int id_lwr = n_boot * alpha;
     double boot_lwr = boot_sorted[id_lwr];
 
     // get upper confidence interval
-    int id_upr = n_boot * conf / 2; 
+    int id_upr = n_boot * (1 - alpha);
     double boot_upr = boot_sorted[id_upr];
     
     // bind the results
