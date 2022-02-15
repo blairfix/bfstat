@@ -4,12 +4,12 @@
 // [[Rcpp::export]]
 
 
-arma::rowvec boot_cor (
-		    arma::vec & x,
-		    arma::vec & y,
-		    double n_boot,
-		    double conf
-		    )
+arma::rowvec boot_cor_null (
+			    arma::vec & x,
+			    arma::vec & y,
+			    double n_boot,
+			    double conf
+			    )
 {
     // container for boostrap correlations
     arma::vec bootstraps(n_boot);
@@ -21,16 +21,24 @@ arma::rowvec boot_cor (
 	// size of sample
 	int n = x.size();
 
-	// make indexs of random sample
-	// sample has n elements composed of integers 
-	// that range from 0 to n - 1
+	// first random sample of indexes
+	// sample of n integers ranging from 0 to n - 1
 	arma::vec ru = arma::randu( n );
 	arma::vec id_tmp = arma::floor( n * ru );
-	arma::uvec id = arma::conv_to<arma::uvec>::from(id_tmp);
+	arma::uvec id1 = arma::conv_to<arma::uvec>::from(id_tmp);
+	
+	// second random sample of indexes
+	// sample of n integers ranging from 0 to n - 1
+	ru = arma::randu( n );
+	id_tmp = arma::floor( n * ru );
+	arma::uvec id2 = arma::conv_to<arma::uvec>::from(id_tmp);
 
 	// get sample of x and y
-	arma::vec x_samp = x(id);
-	arma::vec y_samp = y(id);
+	// since samples use diferent indexes, we are randomly sampling
+	// from the set of x and y, 
+	// that assumes the null hypothesis, no correlation between x and y
+	arma::vec x_samp = x(id1);
+	arma::vec y_samp = y(id2);
 
 	// get correlation
 	arma::mat samp_cor = arma::cor( x_samp, y_samp );

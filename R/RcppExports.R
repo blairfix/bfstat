@@ -5,3 +5,7 @@ boot_cor <- function(x, y, n_boot, conf) {
     .Call('_bfstat_boot_cor', PACKAGE = 'bfstat', x, y, n_boot, conf)
 }
 
+boot_cor_null <- function(x, y, n_boot, conf) {
+    .Call('_bfstat_boot_cor_null', PACKAGE = 'bfstat', x, y, n_boot, conf)
+}
+
