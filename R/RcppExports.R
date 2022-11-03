@@ -9,3 +9,35 @@ boot_cor_null <- function(x, y, n_boot, conf) {
     .Call('_bfstat_boot_cor_null', PACKAGE = 'bfstat', x, y, n_boot, conf)
 }
 
+boot_mean_sample <- function(x, n_boot) {
+    .Call('_bfstat_boot_mean_sample', PACKAGE = 'bfstat', x, n_boot)
+}
+
+boot_mean_conf <- function(x, conf, n_boot) {
+    .Call('_bfstat_boot_mean_conf', PACKAGE = 'bfstat', x, conf, n_boot)
+}
+
+boot_sd_sample <- function(x, n_boot) {
+    .Call('_bfstat_boot_sd_sample', PACKAGE = 'bfstat', x, n_boot)
+}
+
+gini <- function(x, corr = FALSE) {
+    .Call('_bfstat_gini', PACKAGE = 'bfstat', x, corr)
+}
+
+lorenz <- function(pay, lower, upper, n_bins) {
+    .Call('_bfstat_lorenz', PACKAGE = 'bfstat', pay, lower, upper, n_bins)
+}
+
+top_frac <- function(pay, frac) {
+    .Call('_bfstat_top_frac', PACKAGE = 'bfstat', pay, frac)
+}
+
+top_k <- function(sort_vec, data_vec, k) {
+    .Call('_bfstat_top_k', PACKAGE = 'bfstat', sort_vec, data_vec, k)
+}
+
+weighted_mean <- function(x, weights) {
+    .Call('_bfstat_weighted_mean', PACKAGE = 'bfstat', x, weights)
+}
+

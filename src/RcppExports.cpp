@@ -39,10 +39,118 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// boot_mean_sample
+arma::vec boot_mean_sample(arma::vec x, double n_boot);
+RcppExport SEXP _bfstat_boot_mean_sample(SEXP xSEXP, SEXP n_bootSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type n_boot(n_bootSEXP);
+    rcpp_result_gen = Rcpp::wrap(boot_mean_sample(x, n_boot));
+    return rcpp_result_gen;
+END_RCPP
+}
+// boot_mean_conf
+arma::vec boot_mean_conf(arma::vec x, double conf, double n_boot);
+RcppExport SEXP _bfstat_boot_mean_conf(SEXP xSEXP, SEXP confSEXP, SEXP n_bootSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type conf(confSEXP);
+    Rcpp::traits::input_parameter< double >::type n_boot(n_bootSEXP);
+    rcpp_result_gen = Rcpp::wrap(boot_mean_conf(x, conf, n_boot));
+    return rcpp_result_gen;
+END_RCPP
+}
+// boot_sd_sample
+arma::vec boot_sd_sample(arma::vec x, double n_boot);
+RcppExport SEXP _bfstat_boot_sd_sample(SEXP xSEXP, SEXP n_bootSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type x(xSEXP);
+    Rcpp::traits::input_parameter< double >::type n_boot(n_bootSEXP);
+    rcpp_result_gen = Rcpp::wrap(boot_sd_sample(x, n_boot));
+    return rcpp_result_gen;
+END_RCPP
+}
+// gini
+double gini(arma::vec x, bool corr);
+RcppExport SEXP _bfstat_gini(SEXP xSEXP, SEXP corrSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type x(xSEXP);
+    Rcpp::traits::input_parameter< bool >::type corr(corrSEXP);
+    rcpp_result_gen = Rcpp::wrap(gini(x, corr));
+    return rcpp_result_gen;
+END_RCPP
+}
+// lorenz
+arma::mat lorenz(arma::vec pay, double lower, double upper, int n_bins);
+RcppExport SEXP _bfstat_lorenz(SEXP paySEXP, SEXP lowerSEXP, SEXP upperSEXP, SEXP n_binsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type pay(paySEXP);
+    Rcpp::traits::input_parameter< double >::type lower(lowerSEXP);
+    Rcpp::traits::input_parameter< double >::type upper(upperSEXP);
+    Rcpp::traits::input_parameter< int >::type n_bins(n_binsSEXP);
+    rcpp_result_gen = Rcpp::wrap(lorenz(pay, lower, upper, n_bins));
+    return rcpp_result_gen;
+END_RCPP
+}
+// top_frac
+double top_frac(arma::vec pay, double frac);
+RcppExport SEXP _bfstat_top_frac(SEXP paySEXP, SEXP fracSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type pay(paySEXP);
+    Rcpp::traits::input_parameter< double >::type frac(fracSEXP);
+    rcpp_result_gen = Rcpp::wrap(top_frac(pay, frac));
+    return rcpp_result_gen;
+END_RCPP
+}
+// top_k
+arma::rowvec top_k(const arma::vec& sort_vec, const arma::vec& data_vec, int k);
+RcppExport SEXP _bfstat_top_k(SEXP sort_vecSEXP, SEXP data_vecSEXP, SEXP kSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const arma::vec& >::type sort_vec(sort_vecSEXP);
+    Rcpp::traits::input_parameter< const arma::vec& >::type data_vec(data_vecSEXP);
+    Rcpp::traits::input_parameter< int >::type k(kSEXP);
+    rcpp_result_gen = Rcpp::wrap(top_k(sort_vec, data_vec, k));
+    return rcpp_result_gen;
+END_RCPP
+}
+// weighted_mean
+double weighted_mean(arma::vec x, arma::vec weights);
+RcppExport SEXP _bfstat_weighted_mean(SEXP xSEXP, SEXP weightsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type x(xSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type weights(weightsSEXP);
+    rcpp_result_gen = Rcpp::wrap(weighted_mean(x, weights));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_bfstat_boot_cor", (DL_FUNC) &_bfstat_boot_cor, 4},
     {"_bfstat_boot_cor_null", (DL_FUNC) &_bfstat_boot_cor_null, 4},
+    {"_bfstat_boot_mean_sample", (DL_FUNC) &_bfstat_boot_mean_sample, 2},
+    {"_bfstat_boot_mean_conf", (DL_FUNC) &_bfstat_boot_mean_conf, 3},
+    {"_bfstat_boot_sd_sample", (DL_FUNC) &_bfstat_boot_sd_sample, 2},
+    {"_bfstat_gini", (DL_FUNC) &_bfstat_gini, 2},
+    {"_bfstat_lorenz", (DL_FUNC) &_bfstat_lorenz, 4},
+    {"_bfstat_top_frac", (DL_FUNC) &_bfstat_top_frac, 2},
+    {"_bfstat_top_k", (DL_FUNC) &_bfstat_top_k, 3},
+    {"_bfstat_weighted_mean", (DL_FUNC) &_bfstat_weighted_mean, 2},
     {NULL, NULL, 0}
 };
 
