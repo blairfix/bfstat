@@ -4,39 +4,53 @@
 // [[Rcpp::plugins(cpp11)]]
 // [[Rcpp::export]]
 
-arma::vec  boot_lm(
+arma::mat  boot_lm(
 	arma::vec x, 
-	arma::vec span, 
-	int n
+	arma::vec y, 
+	int n_boot
 	)
 {
 
-    // lm vectors
-    int index;          
-    arma::mat X(n, 2); 
-    arma::vec y(n);
+
+    // output matrix
+    arma::mat output(n_boot, 2);
+
+
+    // run boostrap
+    //-------------------------------------------------------
+
+    for( int boot = 0; boot < n_boot; boot++ ){
+
+	int samp_size = x.size();
+
+	arma::mat X(samp_size, 2);
+	arma::vec Y(samp_size);
+
+	std::random_device rd;  //obtain a seed for the random number engine
+	std::mt19937 gen(rd()); //Standard mersenne_twister_engine seeded with rd()
+	std::uniform_real_distribution<> dis(0, 1);
+
+	// loop over x-y vectors and sample them
+	for( int i = 0; i < samp_size; i++ ){
+
+	    int index = samp_size * dis(gen);
+	    X(i, 0) = 1;
+	    X(i, 1) = x[index];
+	    Y[i] = y[index];
+
+	}
     
-    // rn seed
-    std::random_device r;  
-    std::mt19937 gen( r() ); 
-    std::uniform_real_distribution<> dis(0, 1);
+	// linear reagression
+	arma::vec coef = arma::solve(X, Y); // coefficients of regression
 
-    // boostrap sample
-    for(int i = 0; i < n; i++){
 
-	index = n*dis(gen) ;
-
-	X(i, 0) = 1;
-	X(i, 1) = x[index];
-
-	y[i] = span[index];
+	// put in output
+	output(boot, 0) = coef[0];
+	output(boot, 1) = coef[1];
 
     }
 
-    // coefficients of regression
-    arma::vec coef = arma::solve(X, y);
-
-    return coef;
+    return output;
 
 }
 

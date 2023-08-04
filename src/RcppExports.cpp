@@ -40,15 +40,15 @@ BEGIN_RCPP
 END_RCPP
 }
 // boot_lm
-arma::vec boot_lm(arma::vec x, arma::vec span, int n);
-RcppExport SEXP _bfstat_boot_lm(SEXP xSEXP, SEXP spanSEXP, SEXP nSEXP) {
+arma::mat boot_lm(arma::vec x, arma::vec y, int n_boot);
+RcppExport SEXP _bfstat_boot_lm(SEXP xSEXP, SEXP ySEXP, SEXP n_bootSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::vec >::type x(xSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type span(spanSEXP);
-    Rcpp::traits::input_parameter< int >::type n(nSEXP);
-    rcpp_result_gen = Rcpp::wrap(boot_lm(x, span, n));
+    Rcpp::traits::input_parameter< arma::vec >::type y(ySEXP);
+    Rcpp::traits::input_parameter< int >::type n_boot(n_bootSEXP);
+    rcpp_result_gen = Rcpp::wrap(boot_lm(x, y, n_boot));
     return rcpp_result_gen;
 END_RCPP
 }
