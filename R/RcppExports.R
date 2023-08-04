@@ -9,6 +9,10 @@ boot_cor_null <- function(x, y, n_boot, conf) {
     .Call('_bfstat_boot_cor_null', PACKAGE = 'bfstat', x, y, n_boot, conf)
 }
 
+boot_lm <- function(x, span, n) {
+    .Call('_bfstat_boot_lm', PACKAGE = 'bfstat', x, span, n)
+}
+
 boot_mean_sample <- function(x, n_boot) {
     .Call('_bfstat_boot_mean_sample', PACKAGE = 'bfstat', x, n_boot)
 }

@@ -39,6 +39,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// boot_lm
+arma::vec boot_lm(arma::vec x, arma::vec span, int n);
+RcppExport SEXP _bfstat_boot_lm(SEXP xSEXP, SEXP spanSEXP, SEXP nSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type x(xSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type span(spanSEXP);
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    rcpp_result_gen = Rcpp::wrap(boot_lm(x, span, n));
+    return rcpp_result_gen;
+END_RCPP
+}
 // boot_mean_sample
 arma::vec boot_mean_sample(arma::vec x, double n_boot);
 RcppExport SEXP _bfstat_boot_mean_sample(SEXP xSEXP, SEXP n_bootSEXP) {
@@ -143,6 +156,7 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_bfstat_boot_cor", (DL_FUNC) &_bfstat_boot_cor, 4},
     {"_bfstat_boot_cor_null", (DL_FUNC) &_bfstat_boot_cor_null, 4},
+    {"_bfstat_boot_lm", (DL_FUNC) &_bfstat_boot_lm, 3},
     {"_bfstat_boot_mean_sample", (DL_FUNC) &_bfstat_boot_mean_sample, 2},
     {"_bfstat_boot_mean_conf", (DL_FUNC) &_bfstat_boot_mean_conf, 3},
     {"_bfstat_boot_sd_sample", (DL_FUNC) &_bfstat_boot_sd_sample, 2},
