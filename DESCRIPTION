@@ -3,7 +3,7 @@ Type: Package
 Title: bfstat
 Version: 0.1.0
 Author: Blair Fix
-Maintainer: <blairfix@gmail.com>
+Maintainer: <blairfix@fastmail.com>
 Description: Tools for doing statistics
 Depends: R (>= 3.0.2), RcppArmadillo (>= 0.7.960.1.1)
 License: GPL
