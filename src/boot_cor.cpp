@@ -1,16 +1,14 @@
 #include <RcppArmadillo.h>
 
 // [[Rcpp::depends(RcppArmadillo)]]
-// [[Rcpp::plugins(cpp11)]]
 // [[Rcpp::export]]
 
-
 arma::rowvec boot_cor (
-		    arma::vec & x,
-		    arma::vec & y,
-		    double n_boot,
-		    double conf
-		    )
+	arma::vec & x,
+	arma::vec & y,
+	double n_boot,
+	double conf
+	)
 {
     // container for boostrap correlations
     arma::vec bootstraps(n_boot);
@@ -46,7 +44,7 @@ arma::rowvec boot_cor (
 
     // sort the bootstrap values
     arma::vec boot_sorted = arma::sort(bootstraps);
-    
+
     // get lower confidence interval
     double alpha = (1 - conf) / 2;
     int id_lwr = n_boot * alpha;
@@ -55,13 +53,13 @@ arma::rowvec boot_cor (
     // get upper confidence interval
     int id_upr = n_boot * (1 - alpha);
     double boot_upr = boot_sorted[id_upr];
-    
+
     // bind the results
     arma::rowvec output = {
-			   boot_lwr,
-			   boot_mean,
-			   boot_upr
-			  };
+	boot_lwr,
+	boot_mean,
+	boot_upr
+    };
 
 
     return output;

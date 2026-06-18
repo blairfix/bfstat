@@ -1,7 +1,6 @@
 #include <RcppArmadillo.h>
 
 // [[Rcpp::depends(RcppArmadillo)]]
-// [[Rcpp::plugins(cpp11)]]
 // [[Rcpp::export]]
 
 arma::mat  boot_lm(
@@ -10,7 +9,6 @@ arma::mat  boot_lm(
 	int n_boot
 	)
 {
-
 
     // output matrix
     arma::mat output(n_boot, 2);
@@ -39,7 +37,7 @@ arma::mat  boot_lm(
 	    Y[i] = y[index];
 
 	}
-    
+
 	// linear reagression
 	arma::vec coef = arma::solve(X, Y); // coefficients of regression
 

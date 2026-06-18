@@ -5,7 +5,6 @@
 // [[Rcpp::depends(RcppArmadillo)]]
 // [[Rcpp::export]]
 
-
 arma::vec boot_mean_sample( arma::vec x,  double n_boot)
 {
 
@@ -18,7 +17,6 @@ arma::vec boot_mean_sample( arma::vec x,  double n_boot)
 
     return mean_boot;
 }
-
 
 
 // [[Rcpp::depends(RcppArmadillo)]]

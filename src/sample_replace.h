@@ -10,7 +10,6 @@
 // Takes a sample of size "size" out of vector x with replacement.
 // Code is taken from the RcppArmadillo sample.h template:
 
-
 arma::vec sample_replace(const arma::vec &x, int size)
 {
 
